@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# This script automates the process for replacing SSL certificates and keys on ESXi hosts
+
 echo "File location: "
 read directory
 
