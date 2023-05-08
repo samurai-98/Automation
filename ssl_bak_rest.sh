@@ -1,14 +1,22 @@
-#!/bin/sh
+#!/bin/bash
 
 # This script automates the restoration of former SSL certificates and keys on ESXi hosts
+echo "Host name: "
+read host
 
-cd /etc/vmware/ssl
+echo "Domain: "
+read domain
+
+echo "Password: "
+read passWd
 
 echo "Restoring SSL backups"
 
+sshpass -p $passWd ssh -tt root@${host}.${domain} << EOF
+cd /etc/vmware/ssl
 cp rui.crt.bak rui.crt
 cp rui.key.bak rui.key
+exit
+EOF
 
-echo "Done. Restarting services"
-
-sh bin/services.sh restart
+echo "Done. Reboot and reconnect host to apply changes"
