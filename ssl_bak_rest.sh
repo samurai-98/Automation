@@ -8,7 +8,7 @@ echo "Domain: "
 read domain
 
 echo "Password: "
-read passWd
+read -s passWd
 
 echo "Restoring SSL backups"
 
