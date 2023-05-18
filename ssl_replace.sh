@@ -40,8 +40,8 @@ echo "Certificate file name: "
 echo "$certFile"
 
 #Copies the CA and RSA key files into the ESXi host, then creates a backup of the old certificates and replaces the former SSL with the new one
-sshpass -p $passWd scp -P 22 $certFile $keyFile root@${hostName}.${domain}:~/tmp/
-sshpass -p $passWd ssh -tt root@${hostName}.${domain} << EOF
+sshpass -p $passWd scp -o StrictHostKeyChecking=no $certFile $keyFile root@${hostName}.${domain}:~/tmp/
+sshpass -p $passWd ssh -tt -o StrictHostKeyChecking=no root@${hostName}.${domain} << EOF
 cd /etc/vmware/ssl
 cp rui.crt rui.crt.bak
 cp rui.key rui.key.bak
