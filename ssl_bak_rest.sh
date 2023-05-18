@@ -12,7 +12,7 @@ read -s passWd
 
 echo "Restoring SSL backups"
 
-sshpass -p $passWd ssh -tt root@${host}.${domain} << EOF
+sshpass -p $passWd ssh -tt -o StrictHostKeyChecking=no root@${host}.${domain} << EOF
 cd /etc/vmware/ssl
 cp rui.crt.bak rui.crt
 cp rui.key.bak rui.key
